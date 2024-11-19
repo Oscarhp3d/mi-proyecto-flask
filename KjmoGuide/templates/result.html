@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KmjoGuide</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Estilos para la página de rutas */
+        body.rutas {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb, #2575fc); /* Fondo */
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+            max-width: 1200px; /* Limita el tamaño en pantallas grandes */
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form input {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1rem;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Tamaño del mapa ajustado */
+        #map {
+            width: 100%; /* Ocupa todo el ancho del contenedor */
+            height: 70vh; /* Ocupa el 70% de la altura de la pantalla */
+            border: 2px solid white;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="rutas">
+    <div class="container">
+        <h1>Encuentra la mejor ruta para tu destino</h1>
+        <form id="routeForm">
+            <input type="text" id="origin" placeholder="Ciudad de origen" required>
+            <input type="text" id="destination" placeholder="Ciudad de destino" required>
+            <button type="submit">Calcular Ruta</button>
+        </form>
+        <div id="map"></div>
+    </div>
+
+    <!-- Carga de la API de Google Maps -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyxau4wmFP5QqHA4Gr55EhZVb4k4YkGZ0&callback=initMap" async defer></script>
+
+    <script>
+        let map, directionsService, directionsRenderer;
+
+        function initMap() {
+            // Inicializa el mapa con un tamaño mayor
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 4.7110, lng: -74.0721 }, // Bogotá, Colombia como ejemplo
+                zoom: 7,
+            });
+
+            // Inicializa los servicios de rutas
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            // Manejo del formulario
+            const form = document.getElementById("routeForm");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                calculateRoute();
+            });
+        }
+
+        function calculateRoute() {
+            const origin = document.getElementById("origin").value;
+            const destination = document.getElementById("destination").value;
+
+            // Configuración de la solicitud de ruta
+            const request = {
+                origin: origin,
+                destination: destination,
+                travelMode: google.maps.TravelMode.DRIVING,
+            };
+
+            // Solicita la ruta al servicio de direcciones
+            directionsService.route(request, (result, status) => {
+                if (status === google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(result);
+                } else {
+                    alert("No se pudo calcular la ruta: " + status);
+                }
+            });
+        }
+    </script>
+</body>
+</html>

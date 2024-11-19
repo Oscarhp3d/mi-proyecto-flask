@@ -1,0 +1,101 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 2rem; /* Ajustado para que no ocupe demasiado espacio */
+    color: #000000; /* Cambiado a color oscuro para visibilidad */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background: rgb(10, 10, 10); /* Fondo del cuadro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 500px; /* Ancho del cuadro */
+    margin: 0 auto; /* Centrado horizontal */
+}
+
+/* Page Backgrounds */
+body.inicio {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Fondo con gradiente */
+}
+
+body.rutas {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Fondo con gradiente */
+}
+
+/* Logo */
+.img-01 {
+    width: 300px; /* Aumenta el tamaño del logo */
+    height: auto; /* Mantiene las proporciones */
+    border-radius: 5px; /* Reduce la curvatura para destacar más */
+    margin: 0 auto 20px; /* Aumenta el margen inferior */
+    display: block; /* Garantiza que esté centrado y como bloque */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra suave para mejor visibilidad */
+}
+
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #2575fc;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background-color: #6a11cb;
+}
+
+/* Input and Forms */
+form {
+    margin-top: 20px;
+}
+
+form input {
+    padding: 10px;
+    margin: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #2575fc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+form button:hover {
+    background-color: #6a11cb;
+}
+
+/* Map */
+#map {
+    margin-top: 20px;
+    width: 250px;
+    height: 70vh;
+    border-radius: 10px;
+}
